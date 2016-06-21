@@ -3,10 +3,8 @@ import {
 } from './classes/Page';
 
 
-var page = new Page();
-
-page.clearHistory();
-page.steer();
-
-//ReactDOM.render(<App />, document.getElementById('root'));
-
+document.addEventListener('DOMContentLoaded', function() {
+	var page = new Page();
+	page.steer();
+	history.pushState("", "", "");
+});

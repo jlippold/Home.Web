@@ -20,7 +20,7 @@ export class MainMenu {
 			subTitle: "Past 3 days round the clock recordings",
 			icon: "list",
 			params: {
-				page: "all"
+				page: "recordings"
 			}
 		}, {
 			title: "Live Feeds",

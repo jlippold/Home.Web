@@ -1,108 +1,109 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ListItems from '../views/ListItems';
+import LiveCams from '../views/LiveCams';
 import Motion from './Motion';
+import Saved from './Saved';
+import Recordings from './Recordings';
 
 import {
 	MainMenu
 } from './MainMenu';
 
-
-
 export class Page {
-	constructor() {
 
-	}
-
-	back() {
-
-		var history = this.getHistory();
-		var lastItem = history.pop();
-		lastItem = history.pop();
-		this.saveHistory(history);
-		this.steer(lastItem, true);
-	}
-
-	steer(nav, isBack) {
+	steer(nav, back) {
 
 		document.getElementById("loader").style.display = 'block';
 
 		var p = this;
 
 		if (nav && nav.hasOwnProperty("params")) {
-
+			
 			if (nav.params.page == "back") {
-				return p.back();
+				return window.history.go(-1);
 			} else if (nav.params.page == "play") {
-				//return p.playVideo(nav.params.file);
-				return p.render(null, nav.params.file, nav, isBack);
-			} else if (nav.params.page == "motion") {
+				p.render(null, nav.params.file, nav, back);
+			} else if (nav.params.page == "saved") {
+				var saved = new Saved.Events();
+				saved.generate(function(err, data) {
+					p.render(err, data, nav, back);
+				});
+			} else if (nav.params.page == "recordings") {
+				if (nav.params.hasOwnProperty("date") && nav.params.hasOwnProperty("hour")) {
+					var recordings = new Recordings.Events(nav.params.date, nav.params.hour);
+					recordings.generate(function(err, data) {
+						p.render(err, data, nav, back);
+					});
+				} else if (nav.params.hasOwnProperty("date")) {
+					var recordings = new Recordings.Hours(nav.params.date);
+					recordings.generate(function(err, data) {
+						p.render(err, data, nav, back);
+					});
+				} else {
+					var recordings = new Recordings.Menu();
+					recordings.generate(function(err, data) {
+						p.render(err, data, nav, back);
+					});
+				}
 
+			} else if (nav.params.page == "motion") {
 				if (!nav.params.hasOwnProperty("date")) {
 					var motion = new Motion.Menu();
 					motion.generate(function(err, data) {
-						p.render(err, data, nav, isBack);
+						p.render(err, data, nav, back);
 					});
 				} else {
 					var motion = new Motion.Events(nav.params.date);
 					motion.generate(function(err, data) {
-						p.render(err, data, nav, isBack);
+						p.render(err, data, nav, back);
 					});
 				}
+			} else if (nav.params.page == "live") {
+				ReactDOM.render(<LiveCams />, document.getElementById('root'));
 			}
 
 		} else {
+			nav = {};
 			var mainMenu = new MainMenu();
 			this.data = mainMenu.generate(function(err, data) {
-				p.render(err, data, nav, isBack);
+				p.render(err, data, nav, back);
 			});
 		}
+
+
 	}
 
-	addHistory(item) {
-		var history = this.getHistory();
-		history.push(item);
-		this.saveHistory(history);
-	}
-
-	getHistory() {
-		var history = localStorage.getItem("history");
-		if (history) {
-			return JSON.parse(history);
-		} else {
-			return [];
-		}
-	}
-
-	saveHistory(history) {
-		history = history || [];
-		localStorage.setItem("history", JSON.stringify(history));
-	}
-
-
-	clearHistory() {
-		localStorage.setItem("history", "[]");
-	}
-
-	render(err, data, nav, isBack) {
-		if (nav && !isBack) {
-			this.addHistory(nav);
-		}
-
+	render(err, data, nav, back) {
+		var p = this
 		if (data.hasOwnProperty("FilePath")) { //video file
-			this.requestVideo(data, function() {
-				//if (!err) {
+			p.requestVideo(data, function() {
 				setTimeout(function() {
 					ReactDOM.render(<ListItems data={data} />, document.getElementById('root'));
-					document.getElementById("loader").style.display = 'none';
+					p.finalizeView(nav, back);
 				}, 2000);
-				//}
 			});
 		} else {
 			ReactDOM.render(<ListItems data={data} />, document.getElementById('root'));
-			document.getElementById("loader").style.display = 'none';
+			p.finalizeView(nav, back);
+		}
+	}
+
+	finalizeView(nav, back) {
+
+		if (!back) {
+			localStorage.setItem("scrollTop", document.documentElement.scrollTop);
+			history.pushState(nav, "", "");
 		}
 
+		if (back) {
+			window.scrollTo(0, localStorage.getItem("scrollTop"));
+			localStorage.setItem("scrollTop", 1);
+		} else {
+			window.scrollTo(0, 1);
+		}
+
+		document.getElementById("loader").style.display = 'none';
 	}
 
 	requestVideo(file, callback) {
@@ -121,3 +122,8 @@ export class Page {
 		request(opts, callback);
 	}
 }
+
+window.addEventListener('popstate', function(e) {
+	var page = new Page();
+	page.steer(e.state, true);
+});

@@ -27,7 +27,7 @@ export default class ListItems extends Component {
 		
 		var getJSXforItem = function(component, item, index) {
 			var jsx = (
-				<a href="#" key={"li" + index} onClick={e => component.handleClick(item)} className="list-group-item">
+				<a href="javascript:;" key={"li" + index} onClick={e => component.handleClick(item)} className="list-group-item">
 					<h4 className="list-group-item-heading">
 					{item.icon ? (
 						<span className={"icon icon-" + item.icon} style={{paddingRight: 6}}></span>    
@@ -49,8 +49,10 @@ export default class ListItems extends Component {
 
 			output.push(
 				<a key={"video"} className="list-group-item">
-      				<h4 className="list-group-item-heading"> 
-      					{data.TimeRecorded} at {data.DateRecorded}
+      				<h4 className="list-group-item-heading" style={{textAlign: 'center'}}> 
+      					{data.CamName} - {data.TimeRecorded} 
+      					<br /> 
+      					{data.DateRecorded}
       				</h4>
       				<br />
       				<div style={{textAlign: 'center'}}>
