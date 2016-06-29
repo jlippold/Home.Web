@@ -1,10 +1,10 @@
 import {
-	Page
-} from './classes/Page';
+	Router
+} from './router';
 
 
 document.addEventListener('DOMContentLoaded', function() {
-	var page = new Page();
-	page.steer();
+	var router = new Router();
+	router.navigate();
 	history.pushState("", "", "");
 });

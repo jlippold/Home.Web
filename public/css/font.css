@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'font';
-  src: url('../font/font.eot?97228008');
-  src: url('../font/font.eot?97228008#iefix') format('embedded-opentype'),
-       url('../font/font.woff2?97228008') format('woff2'),
-       url('../font/font.woff?97228008') format('woff'),
-       url('../font/font.ttf?97228008') format('truetype'),
-       url('../font/font.svg?97228008#font') format('svg');
+  src: url('../font/font.eot?44741030');
+  src: url('../font/font.eot?44741030#iefix') format('embedded-opentype'),
+       url('../font/font.woff2?44741030') format('woff2'),
+       url('../font/font.woff?44741030') format('woff'),
+       url('../font/font.ttf?44741030') format('truetype'),
+       url('../font/font.svg?44741030#font') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'font';
-    src: url('../font/font.svg?97228008#font') format('svg');
+    src: url('../font/font.svg?44741030#font') format('svg');
   }
 }
 */
@@ -61,4 +61,20 @@
 .icon-camera:before { content: '\e803'; } /* '' */
 .icon-calendar:before { content: '\e804'; } /* '' */
 .icon-play:before { content: '\e805'; } /* '' */
-.icon-back:before { content: '\e806'; } /* '' */
+.icon-headphones:before { content: '\e806'; } /* '' */
+.icon-lights:before { content: '\e807'; } /* '' */
+.icon-spinner:before { content: '\e808'; } /* '' */
+.icon-monitor:before { content: '\e809'; } /* '' */
+.icon-download-cloud:before { content: '\e80a'; } /* '' */
+.icon-sonarr:before { content: '\e80b'; } /* '' */
+.icon-utorrent:before { content: '\e80c'; } /* '' */
+.icon-kodi:before { content: '\e80d'; } /* '' */
+.icon-git:before { content: '\e80e'; } /* '' */
+.icon-doc:before { content: '\e80f'; } /* '' */
+.icon-list-bullet:before { content: '\e810'; } /* '' */
+.icon-router:before { content: '\e811'; } /* '' */
+.icon-cog:before { content: '\e812'; } /* '' */
+.icon-amazon:before { content: '\e813'; } /* '' */
+.icon-emby:before { content: '\e814'; } /* '' */
+.icon-stern:before { content: '\e815'; } /* '' */
+.icon-jed:before { content: '\e816'; } /* '' */

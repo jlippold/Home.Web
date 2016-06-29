@@ -1,27 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ListItems from '../views/ListItems';
-import LiveCams from '../views/LiveCams';
-import Motion from './Motion';
-import Saved from './Saved';
-import Recordings from './Recordings';
+import ListItems from './views/ListItems';
+import LiveCams from './views/LiveCams';
+import Login from './views/Login';
+import Motion from './classes/Motion';
+import Saved from './classes/Saved';
+import Recordings from './classes/Recordings';
+import auth from './classes/Auth';
 
 import {
 	MainMenu
-} from './MainMenu';
+} from './classes/MainMenu';
 
-export class Page {
+import {
+	CamMenu
+} from './classes/CamMenu';
 
-	steer(nav, back) {
+export class Router {
+	showLoader(show) {
+		if (document.getElementById("loader")) {
+			document.getElementById("loader").style.display = (show ? 'block' : 'none');
+		}
+	}
 
-		document.getElementById("loader").style.display = 'block';
+	navigate(nav, back) {
 
 		var p = this;
+		p.showLoader(true);
 
 		if (nav && nav.hasOwnProperty("params")) {
-			
+
 			if (nav.params.page == "back") {
 				return window.history.go(-1);
+			} else if (nav.params.page == "cameras") {
+				var camMenu = new CamMenu();
+				camMenu.generate(function(err, data) {
+					p.render(err, data, {}, back);
+				});
+			} else if (nav.params.page == "url") {
+				return window.location.href = nav.params.href;
 			} else if (nav.params.page == "play") {
 				p.render(null, nav.params.file, nav, back);
 			} else if (nav.params.page == "saved") {
@@ -64,10 +81,20 @@ export class Page {
 			}
 
 		} else {
-			nav = {};
-			var mainMenu = new MainMenu();
-			this.data = mainMenu.generate(function(err, data) {
-				p.render(err, data, nav, back);
+
+			if (window.location.hash == "#Err") {
+				return ReactDOM.render(<Login />, document.getElementById('root'));
+			}
+
+			auth.validate(function(err, user) {
+				if (!err) {
+					var mainMenu = new MainMenu();
+					mainMenu.generate(user, function(err, data) {
+						p.render(err, data, {}, back);
+					});
+				} else {
+					ReactDOM.render(<Login />, document.getElementById('root'));
+				}
 			});
 		}
 
@@ -81,7 +108,7 @@ export class Page {
 				setTimeout(function() {
 					ReactDOM.render(<ListItems data={data} />, document.getElementById('root'));
 					p.finalizeView(nav, back);
-				}, 2000);
+				}, 1000);
 			});
 		} else {
 			ReactDOM.render(<ListItems data={data} />, document.getElementById('root'));
@@ -103,7 +130,8 @@ export class Page {
 			window.scrollTo(0, 1);
 		}
 
-		document.getElementById("loader").style.display = 'none';
+		this.showLoader(false);
+		document.activeElement.blur();
 	}
 
 	requestVideo(file, callback) {
@@ -124,6 +152,6 @@ export class Page {
 }
 
 window.addEventListener('popstate', function(e) {
-	var page = new Page();
-	page.steer(e.state, true);
+	var router = new Router();
+	router.navigate(e.state, true);
 });

@@ -112,6 +112,7 @@ class Events {
 					title: item.TimeRecorded + " " + item.CamName,
 					subTitle: dt.fromNow() + ", " + item.DateRecorded,
 					icon: "play",
+					hasSaveIcon: true,
 					params: {
 						page: "play",
 						file: item

@@ -1,9 +1,9 @@
 {
   "name": "Home.Web",
   "version": "1.0.0",
-  "description": "Security Camera thing",
+  "description": "jed.bz website",
   "scripts": {
-    "build": "webpack --config webpack.production.js",
+    "build": "bash build.sh",
     "start": "node server.js",
     "lint": "eslint src"
   },
