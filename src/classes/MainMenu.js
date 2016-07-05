@@ -7,8 +7,7 @@ export class MainMenu {
 			subTitle: "Turn off lights, TVs, set climate etc",
 			icon: "lights",
 			params: {
-				page: "url",
-				href: "https://jed.bz/home/"
+				page: "automation"
 			}
 		}, {
 			id: "cameras",

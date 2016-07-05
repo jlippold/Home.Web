@@ -5,6 +5,8 @@ import LiveCams from './views/LiveCams';
 import Login from './views/Login';
 import Motion from './classes/Motion';
 import Saved from './classes/Saved';
+import Automation from './classes/Automation';
+import AutomationItems from './views/AutomationItems';
 import Recordings from './classes/Recordings';
 import auth from './classes/Auth';
 
@@ -36,6 +38,11 @@ export class Router {
 				var camMenu = new CamMenu();
 				camMenu.generate(function(err, data) {
 					p.render(err, data, {}, back);
+				});
+			} else if (nav.params.page == "automation") {
+				var automation = new Automation.Menu();
+				automation.generate(function(err, data) {
+					p.renderAutomation(err, data, {}, back);
 				});
 			} else if (nav.params.page == "url") {
 				return window.location.href = nav.params.href;
@@ -114,6 +121,12 @@ export class Router {
 			ReactDOM.render(<ListItems data={data} />, document.getElementById('root'));
 			p.finalizeView(nav, back);
 		}
+	}
+
+	renderAutomation(err, data, nav, back) {
+		var p = this;
+		ReactDOM.render(<AutomationItems data={data} />, document.getElementById('root'));
+		p.finalizeView(nav, back);
 	}
 
 	finalizeView(nav, back) {

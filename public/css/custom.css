@@ -60,7 +60,7 @@ a.navbar-brand
 
 #root.menu a.list-group-item:focus h4 span.icon::before
 {
-  content:"\e808"!important
+  content:"\e818"!important
 }
 
 
@@ -288,3 +288,51 @@ a.navbar-brand
     transform:rotate(359deg)
   }
 }
+
+
+div.ha-container {
+  display: flex; 
+  flex-wrap: nowrap;
+}
+
+a.list-group-item.heading {
+  background-color: rgba(2, 2, 2, 0.5) !important;
+  height: 34px;
+}
+
+a.list-group-item.heading h4 {
+  line-height: 10px;
+} 
+
+h4.ha-header {
+  max-height: 40px;
+  text-overflow: ellipsis; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  line-height: 37px; 
+  width: 100%;
+  font-weight: normal;
+}
+
+h4.ha-header span.icon {
+  margin-right: 8px; 
+  float: left; 
+  background: linear-gradient(#020202, #101112 40%, #141618);
+  border-radius: 38px;
+  color: white;
+  font-size: 20px;
+  padding-left: 4px;
+  line-height: 39px;
+  height: 38px;
+  margin-left: 0;
+  width: 38px;
+}
+
+div.ha-container span.icon.on { 
+  background: linear-gradient(#78cc78, #62c462 60%, #53be53) !important;
+}
+
+div.ha-container div.btn-group {
+  min-width: 92px;
+}
+
