@@ -1,18 +1,17 @@
 @import url('//fonts.googleapis.com/css?family=Bangers');
 
-body
-{
-  background:rgba(0,0,0,0) url(https://jed.bz/img/dark_wood.png) repeat scroll 0 0
+body {
+  background: #485563; 
+  background: -webkit-linear-gradient(to left, #485563 , #29323c);
+  background: linear-gradient(to left, #485563 , #29323c);
 }
 
-.navbar
-{
+.navbar {
   background:rgba(49,53,57,0.95) none repeat scroll 0 0;
   background-image:none
 }
 
-a.navbar-brand
-{
+a.navbar-brand {
   font-size:4.8em;
   margin-top:-18px;
   margin-left:-27px
