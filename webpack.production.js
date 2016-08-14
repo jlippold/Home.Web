@@ -7,9 +7,9 @@ module.exports = {
 		'./src/index'
 	],
 	output: {
-		path: path.join(__dirname, 'public/js'),
+		path: path.join(__dirname, 'pub/js'),
 		filename: 'bundle.js',
-		publicPath: '/public/js/'
+		publicPath: '/pub/js/'
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),

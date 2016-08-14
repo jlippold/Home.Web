@@ -5,7 +5,7 @@ export class MainMenu {
 			id: "home",
 			title: "Home Automation",
 			subTitle: "Turn off lights, TVs, set climate etc",
-			icon: "lights",
+			icon: "lightbulb",
 			params: {
 				page: "automation"
 			}
