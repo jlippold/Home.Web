@@ -21,7 +21,7 @@ export default class NavBar extends Component {
 					<ul className="nav navbar-nav">
 						<li>
 							<p className="navbar-btn">
-								<a className="logo btn btn-default btn-circle" href="/"> <i className="icon icon-jed" /></a>
+								<a className="logo btn btn-default btn-circle" href="/admin"> <i className="icon icon-jed" /></a>
 							</p>
 						</li>
 					</ul>
