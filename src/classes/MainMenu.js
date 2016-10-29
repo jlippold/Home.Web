@@ -87,7 +87,7 @@ export class MainMenu {
 			icon: "kodi",
 			params: {
 				page: "url",
-				href: "http://192.168.1.85/addons/webinterface.chorus/#remote"
+				href: "https://jed.bz/kodi-lr/#remote"
 			}
 		}, {
 			id: "kodi-br",
@@ -96,7 +96,7 @@ export class MainMenu {
 			icon: "kodi",
 			params: {
 				page: "url",
-				href: "http://192.168.1.103/addons/webinterface.chorus/#remote"
+				href: "https://jed.bz/kodi-br/#remote"
 			}
 		}, {
 			title: "Router",
