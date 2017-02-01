@@ -480,7 +480,7 @@
     },
     {
       "uid": "43fl9m553j1z5937vfjz0lgolrlspxwl",
-      "css": "ok",
+      "css": "ok-1",
       "code": 59437,
       "src": "typicons"
     },
@@ -813,6 +813,54 @@
       "search": [
         "jed"
       ]
+    },
+    {
+      "uid": "77dc6351a75ce82023a99696c9dd1ed3",
+      "css": "back",
+      "code": 59482,
+      "src": "websymbols"
+    },
+    {
+      "uid": "ccddff8e8670dcd130e3cb55fdfc2fd0",
+      "css": "down",
+      "code": 59483,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d870630ff8f81e6de3958ecaeac532f2",
+      "css": "left",
+      "code": 59484,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "399ef63b1e23ab1b761dfbb5591fa4da",
+      "css": "right",
+      "code": 59485,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "fe6697b391355dec12f3d86d6d490397",
+      "css": "up",
+      "code": 59486,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "130380e481a7defc690dfb24123a1f0c",
+      "css": "ok",
+      "code": 61713,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "76857a03fbaa6857fe063b6c25aa98ed",
+      "css": "volume-up",
+      "code": 59487,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "fee6e00f36e8ca8ef3e4a62caa213bf6",
+      "css": "volume-down",
+      "code": 59488,
+      "src": "fontawesome"
     }
   ]
 }
